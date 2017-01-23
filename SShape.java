@@ -217,21 +217,7 @@ public class SShape {
   } 
   
   public boolean rotate() {
-    // TODO: do not allow the shape to rotate if the cells are not empty.
-    // Use grid.isEmpty() and grid.isInBounds()
-    //boolean up = 
-      //grid.isEmpty(col1 +1, row1 + 1) &&
-      //grid.isInBounds(col1 +1, row1 +1);
-    //boolean  upRight= 
-      //grid.isEmpty(col2, row2 + 2) &&
-      //grid.isInBounds(col2, row2 + 2);
-    //boolean bottom =
-      //grid.isEmpty(colOrigin +1, rowOrigin + 1) &&
-      //grid.isInBounds(colOrigin +1, rowOrigin +1);
-    //boolean bottomLeft =
-      //grid.isEmpty(col0, row0 + 2) &&
-      //grid.isInBounds(col0, row0 + 2);
-    //if(up && upRight && bottom && bottomLeft){
+
       // *************** direction 0 ************
       if (direction == 0) {
         boolean rotate1 =  

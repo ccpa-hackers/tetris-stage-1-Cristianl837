@@ -23,26 +23,76 @@ public class SShape {
   }
   
   public boolean moveDown() {
-    boolean left =
-      grid.isEmpty(col0, row0 + 1) &&
-      grid.isInBounds(col0, row0 + 1);
-    boolean down =
-      grid.isEmpty(colOrigin, rowOrigin + 1) &&
-      grid.isInBounds(colOrigin, rowOrigin + 1);
-    boolean right =
-      grid.isEmpty(col2, row2 + 1) &&
-      grid.isInBounds(col2, row2 + 1);
-      
-    if (left && down && right) {
+    //*******direction 0*************
+    if(direction == 0){
+      boolean down0 =
+        grid.isEmpty(col0 , row0+1) &&
+        grid.isInBounds(col0 , row0+1);
+      boolean downO  = 
+        grid.isEmpty(colOrigin , rowOrigin + 1)&&
+        grid.isInBounds(colOrigin , rowOrigin + 1);
+      boolean down2 = 
+        grid.isEmpty(col2 , row2 + 1)&&
+        grid.isInBounds(col2 , row2 + 1);
+        
+      if (down0 && downO && down2) {
+        ++rowOrigin;
+        ++row0;
+        ++row1;
+        ++row2;
+        return true;
+      }
+    //*******direction 1*************
+    }else if (direction == 1){
+      boolean downO  = 
+        grid.isEmpty(colOrigin , rowOrigin+1)&&
+        grid.isInBounds(colOrigin , rowOrigin +1);
+      boolean down2 = 
+        grid.isEmpty(col2 , row2+1)&&
+        grid.isInBounds(col2 , row2+1);
+      if (downO && down2) {
       ++rowOrigin;
       ++row0;
       ++row1;
       ++row2;
-
       return true;
+      }
+      //*******direction 2*************
+    }else if (direction == 2){
+      boolean down1 =
+        grid.isEmpty(col1 , row1 + 1) &&
+        grid.isInBounds(col1 , row1 + 1);
+      boolean down2  = 
+        grid.isEmpty(col2 , row2 +1)&&
+        grid.isInBounds(col2 , row2 +1);
+      boolean down0  = 
+        grid.isEmpty(col0 , row0 +1)&&
+        grid.isInBounds(col0 , row0 +1);
+      if (down1 && down2 && down0) {
+        ++rowOrigin;
+        ++row0;
+        ++row1;
+        ++row2;
+        return true;
+      }
+    //*******direction 3*************
+    }else if (direction == 3){
+      boolean down0 =
+        grid.isEmpty(col0 , row0 + 1) &&
+        grid.isInBounds(col0 , row0 + 1);
+      boolean down1 = 
+        grid.isEmpty(col1 , row1 + 1)&&
+        grid.isInBounds(col1 , row1 + 1);
+      if (down0 && down1 ) {
+        ++rowOrigin;
+        ++row0;
+        ++row1;
+        ++row2;
+        return true;
+      }
+      //return false;
     }
-      
-    return false;
+      return false; 
   }
   
   public boolean moveLeft() {
@@ -54,13 +104,11 @@ public class SShape {
       boolean right  = 
         grid.isEmpty(col1 - 1, row1)&&
         grid.isInBounds(col1 - 1, row1);
-      
       if (left && right) {
         --colOrigin;
         --col0;
         --col1;
         --col2;
-        
         return true;
       }
     //*******direction 1*************
@@ -89,13 +137,11 @@ public class SShape {
       boolean left2  = 
         grid.isEmpty(col2 - 1, row2)&&
         grid.isInBounds(col2 - 1, row2);
-      
       if (leftO && left2) {
         --colOrigin;
         --col0;
         --col1;
         --col2;
-        
         return true;
       }
     //*******direction 3*************
@@ -118,28 +164,9 @@ public class SShape {
       }  
       
     }
-    
     return false;
   }
-  
   public boolean moveRight() {
-    //if(direction == 0){
-    //boolean rightTop =
-      //grid.isEmpty(col2 + 1, row0) &&
-      //grid.isInBounds(col2 + 1, row0);
-    //boolean rightBottom =
-      //grid.isEmpty(colOrigin + 1, row0) &&
-      //grid.isInBounds(colOrigin + 1, row0);
-    
-    //if (rightTop && rightBottom) {
-      //++colOrigin;
-      //++col0;
-      //++col1;
-      //++col2;
-      //return true;
-    //}
-    //}
-    //return false;
     if(direction == 0){
       boolean right2 =
         grid.isEmpty(col2 + 1, row2) &&
@@ -147,13 +174,11 @@ public class SShape {
       boolean rightO  = 
         grid.isEmpty(colOrigin + 1, rowOrigin)&&
         grid.isInBounds(colOrigin + 1, rowOrigin);
-      
       if (right2 && rightO) {
         ++colOrigin;
         ++col0;
         ++col1;
         ++col2;
-        
         return true;
       }
     //*******direction 1*************
@@ -182,13 +207,11 @@ public class SShape {
       boolean right1 = 
         grid.isEmpty(col1 + 1, row1)&&
         grid.isInBounds(col1 + 1, row1);
-      
       if (right0 && right1) {
         ++colOrigin;
         ++col0;
         ++col1;
         ++col2;
-        
         return true;
       }
     //*******direction 3*************
@@ -211,21 +234,19 @@ public class SShape {
       }  
       
     }
-    
     return false;
-    
   } 
   
   public boolean rotate() {
-
       // *************** direction 0 ************
       if (direction == 0) {
         boolean rotate1 =  
           grid.isEmpty(col1 + 1, row1 + 1)&&
           grid.isInBounds(col1 + 1, row1 + 1);
         boolean rotate2 = 
-          grid.isEmpty(col2, row2 + 2)&&
-          grid.isInBounds(col2, row2 + 2);
+          grid.isEmpty(col2 , row2 + 2)&&
+          grid.isInBounds(col2 , row2 + 2);
+        
         if(rotate1 && rotate2){ 
           --row0;
           ++col0;
@@ -249,7 +270,6 @@ public class SShape {
           --col1;
           ++row1;
           col2 = col2 - 2;
-          
           direction = 2;
           return true;
         }
@@ -267,7 +287,6 @@ public class SShape {
           --row1;
           --col1;
           row2 = row2 - 2;
-          
           direction = 3;
           return true;
         }
@@ -285,9 +304,7 @@ public class SShape {
           --row1;
           ++col1;
           col2 = col2 + 2;
-          
           direction = 0;
-        
           return true; 
         }
       }
